@@ -1,15 +1,27 @@
 {
   "name": "angular-select-dropdown",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "license": "MIT",
+  "description": "A highly customizable and flexible dropdown select component for Angular applications. Ideal for creating dynamic select menus with search, filtering.",
   "keywords": [
     "angular",
     "dropdown",
     "select",
+    "angular select",
+    "angular component",
+    "custom select",
+    "select dropdown",
     "ngx-select-dropdown",
+    "ng-select",
     "ng-select-dropdown",
-    "angular-select-dropdown"
+    "angular-select-dropdown",
+    "angular form component"
   ],
+  "author": "Zhelizniak Vitalii",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jelizniak-Vitalii/Angular-select-dropdown.git"
+  },
   "peerDependencies": {
     "@angular/common": "^16.2.0",
     "@angular/core": "^16.2.0"
