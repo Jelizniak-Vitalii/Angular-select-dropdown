@@ -23,7 +23,7 @@ $radius-l: .75rem;
     &:hover {
       .angular-select-dropdown-actions {
         &__arrow {
-          background-image: url("../../icons/arrow-active.svg");
+          background-image: url("../icons/arrow-active.svg");
         }
       }
     }
@@ -59,16 +59,16 @@ $radius-l: .75rem;
     }
 
     &__close {
-      background-image: url("../../icons/close.svg");
+      background-image: url("../icons/close.svg");
 
       &:hover {
-        background-image: url("../../icons/close-active.svg");
+        background-image: url("../icons/close-active.svg");
       }
     }
 
     &__arrow {
       transition: .4s;
-      background-image: url("../../icons/arrow.svg");
+      background-image: url("../icons/arrow.svg");
 
       &_rotate {
         transform: rotate(180deg);
