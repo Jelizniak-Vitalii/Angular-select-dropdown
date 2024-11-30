@@ -1,0 +1,57 @@
+<div
+  class="angular-select-dropdown-wrapper"
+  [excludeElements]="['.angular-select-dropdown-menu']"
+  [class.angular-select-dropdown-wrapper_disabled]="disabled"
+  (clickOutside)="closeDropdownMenu()"
+  (click)="onSelectClick()"
+>
+  <div
+    class="angular-select-dropdown__text"
+    [class.angular-select-dropdown__text_placeholder]="!selectedItem.name && placeholder"
+    [title]="selectedItem.name"
+  >
+    {{selectedItem.name || placeholder}}
+  </div>
+
+  <div class="angular-select-dropdown-actions">
+    <div
+      *ngIf="isClearable"
+      class="angular-select-dropdown-actions__close"
+      (click)="onClickRemove($event)"
+    ></div>
+    <div
+      class="angular-select-dropdown-actions__arrow"
+      [class.angular-select-dropdown-actions__arrow_rotate]="isDropdownOpen"
+    ></div>
+  </div>
+</div>
+
+<div
+  *ngIf="isDropdownOpen"
+  class="angular-select-dropdown-menu"
+>
+  <div class="angular-select-dropdown-menu__wrapper">
+    <div
+      *ngIf="itemsStore.length; else itemsListEmpty"
+      class="angular-select-dropdown-menu__items"
+    >
+      <div
+        *ngFor="let item of itemsStore; let i = index; trackBy: trackByValue"
+        class="angular-select-dropdown-menu__item"
+        [class.angular-select-dropdown-menu__item_active]="item.value === selectedItem.value"
+        [title]="item.name"
+        (click)="onSelectItem(item)"
+      >
+        {{item.name}}
+      </div>
+    </div>
+
+    <ng-template #itemsListEmpty>
+      <div
+        class="angular-select-dropdown-menu__not-found"
+      >
+        {{notFoundMessage}}
+      </div>
+    </ng-template>
+  </div>
+</div>

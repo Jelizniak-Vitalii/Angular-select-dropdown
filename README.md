@@ -1,27 +1,115 @@
-# AngularSelectDropdownDemo
+# Angular Select Dropdown Component
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.11.
+A flexible and customizable dropdown component for Angular that allows users to select from a list of items. It supports features like sorting, clearing selections, and customizable item labels.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Customizable Label Handler**: Use a function to define how to extract the label for each item.
+- **Sort Items**: Sort items based on a specified key.
+- **Clearable**: Allows clearing the selection with an optional clear button.
+- **Disabled State**: Disable the dropdown and prevent interaction.
+- **Dynamic Search**: Shows a message when no items match the search query.
+- **Close on Clear**: Close the dropdown when the selection is cleared (optional).
+- **Placeholder**: Display a placeholder text when no item is selected.
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+You can install the component via npm:
 
-## Build
+```bash
+npm install angular-select-dropdown --save
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Usage
 
-## Running unit tests
+To use the `AngularSelectDropdownComponent` in your Angular project:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. Import the module in your Angular module:
 
-## Running end-to-end tests
+```typescript
+import { AngularSelectDropdownModule } from 'angular-select-dropdown';
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+@NgModule({
+  imports: [
+    AngularSelectDropdownModule
+  ]
+})
+export class AppModule {}
+```
+## Inputs
 
-## Further help
+- `labelHandler: (item: T) => any`: A function that extracts the label for each item. Default is `(item) => item.name || item` is used, which tries to get name from the item or returns the item itself if name is missing.
+- `sortKeyName: string`: The key used to sort the items. Default is `'value'`.
+- `items: T[]`: An array of items to populate the dropdown.
+- `isClearable: boolean`: If true, shows a clear button to remove the selected item. Default is `false`.
+- `disabled: boolean`: If true, the dropdown is disabled. Default is `false`.
+- `closeMenuOnClear: boolean`: If true, the dropdown menu will close when the selection is cleared. Default is `true`.
+- `placeholder: string`: The placeholder text when no item is selected. Default is an empty string.
+- `notFoundMessage: string`: The message to display when no items match the search. Default is `'Nothing found'`.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Outputs
+
+- `selectItem: EventEmitter<T>`: Emits the selected item when an item is selected.
+
+
+## Use the component in your template:
+
+```html
+<angular-select-dropdown
+  [items]="items"
+  [labelHandler]="labelHandler"
+  [sortKeyName]="'value'"
+  [isClearable]="true"
+  [disabled]="false"
+  [placeholder]="'Select an item'"
+  [closeMenuOnClear]="true"
+  [formControl]="control"
+  (selectItem)="onSelectItem($event)">
+</angular-select-dropdown>
+```
+
+## Example Component
+
+```typescript
+import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
+
+@Component({
+  selector: 'app-dropdown-example',
+  templateUrl: './dropdown-example.component.html'
+})
+export class DropdownExampleComponent {
+  items = [
+    { value: 1, name: 'Item 1' },
+    { value: 2, name: 'Item 2' },
+    { value: 3, name: 'Item 3' }
+  ];
+  // or simple string
+  items = [ 'item 1', 'item 2', 'item 3' ];
+
+  labelHandler = (item) => item[yourKey];
+  control: FormControl = new FormControl();
+
+  onSelectItem(selectedItem) {
+    console.log('Selected Item:', selectedItem);
+  }
+}
+```
+
+## Styling
+
+You can apply custom styles to the dropdown by targeting the `angular-select-dropdown` class in your global styles.
+
+```css
+.angular-select-dropdown {
+  /* Custom styles for the dropdown */
+}
+```
+
+## License
+
+This component is open-source and available under the MIT license.
+
+## Contributing
+
+Feel free to fork the repository and submit pull requests for any improvements or bug fixes.

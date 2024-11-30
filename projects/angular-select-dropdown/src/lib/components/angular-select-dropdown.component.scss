@@ -1,0 +1,146 @@
+$icon-size: 20px;
+$radius-m: .625rem;
+$radius-s: .5rem;
+$radius-l: .75rem;
+
+:host,
+.angular-select-dropdown {
+  display: block;
+  position: relative;
+  width: 100%;
+}
+
+.angular-select-dropdown {
+  &-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 10px 10px 10px 15px;
+    border: 1px solid #0000001a;
+    border-radius: $radius-m;
+
+    &:hover {
+      .angular-select-dropdown-actions {
+        &__arrow {
+          background-image: url("../../icons/arrow-active.svg");
+        }
+      }
+    }
+
+    &_disabled {
+      pointer-events: none;
+      opacity: .5;
+    }
+  }
+
+  &__text {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #1b1f3b;
+    font-family: inherit;
+    width: 100%;
+
+    &_placeholder {
+      color: rgba(27, 31, 59, .65)
+    }
+  }
+
+  &-actions {
+    display: flex;
+    align-items: center;
+
+    &__close,
+    &__arrow {
+      width: $icon-size;
+      height: $icon-size;
+      background-repeat: no-repeat;
+    }
+
+    &__close {
+      background-image: url("../../icons/close.svg");
+
+      &:hover {
+        background-image: url("../../icons/close-active.svg");
+      }
+    }
+
+    &__arrow {
+      transition: .4s;
+      background-image: url("../../icons/arrow.svg");
+
+      &_rotate {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  &-menu {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 45px;
+    border: 1px solid #0000001a;
+    border-radius: $radius-m;
+
+    &__wrapper {
+      padding: 4px;
+    }
+
+    &__items {
+      padding: 1px;
+      max-height: 200px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      box-sizing: border-box;
+
+      &::-webkit-scrollbar {
+        width: 4px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: $radius-m;
+        cursor: pointer;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+    }
+
+    &__item {
+      padding: 10px 10px;
+      cursor: pointer;
+      border-radius: $radius-m;
+      margin-bottom: 2px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      font-family: inherit;
+      color: #1b1f3b;
+
+      &_active {
+        background-color: rgba(0, 0, 0, .04);
+      }
+
+      &:hover {
+        background-color: rgba(0, 0, 0, .04);
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &__not-found {
+      padding: 10px 10px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      font-family: inherit;
+      color: rgba(27, 31, 59, .4);
+    }
+  }
+}
